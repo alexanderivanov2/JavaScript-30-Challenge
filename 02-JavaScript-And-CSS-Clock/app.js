@@ -6,8 +6,6 @@ function startClock(e) {
     const hourHand = document.querySelector('.hour-hand');
     const minHand = document.querySelector('.min-hand');
     const secHand = document.querySelector('.second-hand');
-    // const time = new Date(Date.now());
-    parameters = {hourHand, minHand, secHand};
     
     function workClock() {
         const time = new Date(Date.now());
