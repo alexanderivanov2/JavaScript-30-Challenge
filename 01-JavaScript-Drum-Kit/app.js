@@ -21,7 +21,7 @@ window.addEventListener('keydown', (e) => {
         const dataKey = drumKey['data-key'];
         const soundTimeout = drumKey.soundTime;
 
-        const divDrumKey = document.querySelector(`[data-key="${dataKey}"]`);
+        const divDrumKey = document.querySelector(`div[data-key="${dataKey}"]`);
         const audioDrumKey = document.querySelector(`audio[data-key="${dataKey}"]`);    
 
         divDrumKey.classList.add('playing');
