@@ -40,7 +40,7 @@ html {
   .hand {
     width: 50%;
     height: 6px;
-    background: black;
+    background: yellow;
     position: absolute;
     top: 50%;
   }
@@ -48,6 +48,10 @@ html {
   .hour-hand {
     transform-origin: right;
     transform: rotate(90deg);
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    background: chartreuse;
   }
 
   .min-hand {
