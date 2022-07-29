@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 
+
+:root {
+    --pMiddle: 4rem;
+}
 html {
     box-sizing: border-box;
     background: #ffc600;
@@ -64,10 +68,11 @@ html {
     font-family: 'Amatic SC', cursive;
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
     font-size: 2em;
+    transition: 1.5s;
   }
   
   .panel p:nth-child(2) {
-    font-size: 4em;
+    font-size: var(--pMiddle);
   }
 
   .closed {
@@ -77,9 +82,10 @@ html {
   .openPanelOne {
     display: block;
     position: relative;
+    top: 80px;
     animation-name: moveDown;
     animation-duration: 3s;
-    top: 80px;  
+    z-index: 1;
     }
 
   .openPanelTwo {
@@ -90,9 +96,30 @@ html {
     animation-duration: 3s;
   }
 
+  .closePanelOne {
+    position: relative;
+    animation-name: moveUpAndOut;
+    animation-duration: 1.5s;
+  }
+
+  .closePanelTwo {
+    position: relative;
+    animation-name: moveDownAndOut;
+    animation-duration: 1.5s;
+  }
+
+  .panel.open {
+    font-size: 40px;
+  }
+
   @keyframes moveDown {
     0% { top: 0px}
     100% {top: 80px}
+  }
+
+  @keyframes moveUpAndOut {
+    0% { top: 80px}
+    100% {top: 0px}
   }
 
   @keyframes moveUp {
@@ -100,7 +127,8 @@ html {
     100% {bottom: 80px;}
   }
 
-
-  .panel.open {
-    font-size: 40px;
+  @keyframes moveDownAndOut {
+    0% {bottom: 80px;}
+    100% {bottom: 0px;}
   }
+
