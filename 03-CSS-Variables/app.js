@@ -2,39 +2,29 @@ const spacing = document.querySelector('#spacing');
 const blur = document.querySelector('#blur');
 const base = document.querySelector('#base');
 const imgElement = document.querySelector('img');
+const spanElement = document.querySelector('.hl');
 
-changeSpacing();
-changeBlur();
-changeBase();
-
-spacing.addEventListener('change', (e) => changeSpacing(e));
-blur.addEventListener('change', (e) => changeBlur(e));
-base.addEventListener('change', (e) => changeBase(e));
+spacing.addEventListener('change', changeSpacing);
+spacing.addEventListener('mousemove', changeSpacing);
+blur.addEventListener('change', changeBlur);
+blur.addEventListener('mousemove', changeBlur);
+base.addEventListener('change', changeBase);
+base.addEventListener('mousemove', changeBase);
 
 function changeSpacing(e) {
-    if (e) {
-        e.preventDefault();
-    }   
+    const spacingValue = e.currentTarget.value;
+    console.log(spacingValue);
 
-    const spacingValue = spacing.value;
-    imgElement.style.padding = `${spacingValue}px`;
+    document.documentElement.style.setProperty('--spacing', `${spacingValue}px`);
 }
     
 
 function changeBlur(e) {
-    if (e) {
-        e.preventDefault();
-    }
-    
-    const blurValue = blur.value;
-    imgElement.style.filter = `blur(${blurValue}px)`
+    const blurValue = e.currentTarget.value;
+    document.documentElement.style.setProperty('--blur', `${blurValue}px`);
 }
 
 function changeBase(e) {
-    if (e) {
-        e.preventDefault();
-    }  
-
-    const baseValue = base.value;
-    imgElement.style.background = baseValue;
+    const baseValue = e.currentTarget.value;
+    document.documentElement.style.setProperty('--base', baseValue);
 }
