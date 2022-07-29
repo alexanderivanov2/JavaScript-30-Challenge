@@ -114,9 +114,3 @@ const result = {
 }
 
 console.table(result);
-//   console.log('Sum up the instance of each of these: ');
-//   console.log(`Cars: ${cars}`);
-//   console.log(`Trucks: ${truck}`);
-//   console.log(`Bikes: ${bike}`);
-//   console.log(`Walks: ${walk}`);
-//   console.log(`Vans: ${van}`)
