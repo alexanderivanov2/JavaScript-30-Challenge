@@ -1,14 +1,15 @@
 let parameters = {};
 
-window.addEventListener('load', (e) => startClock(e));
+window.addEventListener('load', () => startClock());
 
-function startClock(e) {
+function startClock() {
     const hourHand = document.querySelector('.hour-hand');
     const minHand = document.querySelector('.min-hand');
     const secHand = document.querySelector('.second-hand');
     
     function workClock() {
         const time = new Date(Date.now());
+
         let hour = time.getHours();
         let mins = time.getMinutes();
         let seconds = time.getSeconds();
@@ -16,7 +17,7 @@ function startClock(e) {
         let hourDeg = convertHours(hour);
         let minsDeg = converMinutesOrSeconds(mins);
         let secDeg = converMinutesOrSeconds(seconds);
-        console.log(`${hour}:${mins}:${seconds}`);
+
         hourHand.style.transform = `rotate(${hourDeg}deg)`;
         minHand.style.transform = `rotate(${minsDeg}deg)`;
         secHand.style.transform = `rotate(${secDeg}deg)`;
