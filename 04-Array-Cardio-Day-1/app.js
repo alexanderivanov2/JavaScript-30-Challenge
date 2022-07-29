@@ -25,18 +25,18 @@ const inventors = [
   // 1. Filter the list of inventors for those who were born in the 1500's
   const inventorsBornIn1500 = inventors.filter(invenrtor => invenrtor.year > 1499 && invenrtor.year < 1600);
   console.log('Inventors born in the 1500s:');
-  inventorsBornIn1500.forEach(inventor => console.log(inventor));
-
+  console.table(inventorsBornIn1500);
   // Array.prototype.map()
   // 2. Give us an array of the inventors first and last names
   console.log('Inventors by first and last name: ');
   const inventorsByFirstAndLastName = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
-  inventorsByFirstAndLastName.forEach(inventor => console.log(inventor));
+//   inventorsByFirstAndLastName.forEach(inventor => console.log(inventor));
+  console.table(inventorsByFirstAndLastName);
   // Array.prototype.sort()
   // 3. Sort the inventors by birthdate, oldest to youngest
   console.log('Investors sort by youngest to oldest: ');
   const investorsByYoungest = inventors.sort((a, b) => a.year - b.year);
-  investorsByYoungest.forEach(inventor => console.log(inventor));
+  console.table(investorsByYoungest);
   // Array.prototype.reduce()
   // 4. How many years did all the inventors live all together?
     console.log('Reduce how many year did all the investors live all together: ');
@@ -45,54 +45,15 @@ const inventors = [
   // 5. Sort the inventors by years lived
   console.log('Investors sort by years lived:');
   const sortByYearsLived = inventors.sort((a, b) => (b.passed - b.year) - (a.passed-a.year));
-  sortByYearsLived.forEach(investor => console.log(investor));
+console.table(sortByYearsLived);
 
 
   // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
   // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-  const boulevards = [
-    "Boulevards of Paris",
-    "City walls of Paris",
-    "Thiers wall",
-    "Wall of Charles V",
-    "Wall of Philip II Augustus",
-    "City gates of Paris",
-    "Haussmann's renovation of Paris",
-    "Boulevards of the Marshals",
-    "Boulevard Auguste-Blanqui",
-    "Boulevard Barbès",
-    "Boulevard Beaumarchais",
-    "Boulevard de l'Amiral-Bruix",
-    "Boulevard Mortier",
-    "Boulevard Poniatowski",
-    "Boulevard Soult",
-    "Boulevard des Capucines",
-    "Boulevard de la Chapelle",
-    "Boulevard de Clichy",
-    "Boulevard du Crime",
-    "Boulevard du Général-d'Armée-Jean-Simon",
-    "Boulevard Haussmann",
-    "Boulevard de l'Hôpital",
-    "Boulevard des Italiens",
-    "Boulevard Lefebvre",
-    "Boulevard de la Madeleine",
-    "Boulevard de Magenta",
-    "Boulevard Malesherbes",
-    "Boulevard Marguerite-de-Rochechouart",
-    "Boulevard Montmartre",
-    "Boulevard du Montparnasse",
-    "Boulevard Raspail",
-    "Boulevard Richard-Lenoir",
-    "Boulevard Saint-Germain",
-    "Boulevard Saint-Michel",
-    "Boulevard de Sébastopol",
-    "Boulevard de Strasbourg",
-    "Boulevard du Temple",
-    "Boulevard Voltaire",
-    "Boulevard de la Zone"];
+  const boulevards = [ "Boulevards of Paris", "City walls of Paris", "Thiers wall", "Wall of Charles V", "Wall of Philip II Augustus", "City gates of Paris", "Haussmann's renovation of Paris", "Boulevards of the Marshals", "Boulevard Auguste-Blanqui", "Boulevard Barbès", "Boulevard Beaumarchais", "Boulevard de l'Amiral-Bruix", "Boulevard Mortier", "Boulevard Poniatowski", "Boulevard Soult", "Boulevard des Capucines", "Boulevard de la Chapelle", "Boulevard de Clichy", "Boulevard du Crime", "Boulevard du Général-d'Armée-Jean-Simon", "Boulevard Haussmann", "Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard Lefebvre", "Boulevard de la Madeleine", "Boulevard de Magenta", "Boulevard Malesherbes", "Boulevard Marguerite-de-Rochechouart", "Boulevard Montmartre", "Boulevard du Montparnasse", "Boulevard Raspail", "Boulevard Richard-Lenoir", "Boulevard Saint-Germain", "Boulevard Saint-Michel", "Boulevard de Sébastopol", "Boulevard de Strasbourg", "Boulevard du Temple", "Boulevard Voltaire", "Boulevard de la Zone"];
     console.log('Boulevard with de in name');
     const BoulevardsWithDeInName = boulevards.filter(boulevard => boulevard.includes('de'));
-    console.log(BoulevardsWithDeInName);
+    console.table(BoulevardsWithDeInName);
 
 
   // 7. sort Exercise
@@ -104,7 +65,7 @@ const inventors = [
     const lastName = str.split(',')[0];
     return lastName;
   }
-  sortedPeopleByLastName.forEach(p => console.log(p));
+  console.table(sortedPeopleByLastName);
 
   // 8. Reduce Exercise
   // Sum up the instances of each of these
@@ -144,9 +105,18 @@ const inventors = [
         return acc;
     }, 0)
 
-  console.log('Sum up the instance of each of these: ');
-  console.log(`Cars: ${cars}`);
-  console.log(`Trucks: ${truck}`);
-  console.log(`Bikes: ${bike}`);
-  console.log(`Walks: ${walk}`);
-  console.log(`Vans: ${van}`)
+const result = {
+    cars,
+    truck,
+    bike,
+    walk,
+    van
+}
+
+console.table(result);
+//   console.log('Sum up the instance of each of these: ');
+//   console.log(`Cars: ${cars}`);
+//   console.log(`Trucks: ${truck}`);
+//   console.log(`Bikes: ${bike}`);
+//   console.log(`Walks: ${walk}`);
+//   console.log(`Vans: ${van}`)
