@@ -6,15 +6,15 @@ const spanElement = document.querySelector('.hl');
 
 spacing.addEventListener('change', changeSpacing);
 spacing.addEventListener('mousemove', changeSpacing);
+
 blur.addEventListener('change', changeBlur);
 blur.addEventListener('mousemove', changeBlur);
+
 base.addEventListener('change', changeBase);
 base.addEventListener('mousemove', changeBase);
 
 function changeSpacing(e) {
     const spacingValue = e.currentTarget.value;
-    console.log(spacingValue);
-
     document.documentElement.style.setProperty('--spacing', `${spacingValue}px`);
 }
     
