@@ -22,6 +22,11 @@ inputSearch.addEventListener('keydown', (e) => {
 
     const searchInput = inputSearch.value;
     const searchLength = searchInput.length;
+    
+    updateListWithResults(searchInput, searchLength);
+});
+
+function updateListWithResults(searchInput, searchLength) {
     const documentFragments = new DocumentFragment();
 
     cities.forEach(city => {
@@ -29,39 +34,15 @@ inputSearch.addEventListener('keydown', (e) => {
         const stateName = city.state;
         const spanSeperator = document.createElement('span');
         spanSeperator.textContent = ', ';
-        if ( searchLength > 1 && (cityName.includes(searchInput) || stateName.includes(searchInput))) {
+
+        if ( searchLength >= 1 && (cityName.includes(searchInput) || stateName.includes(searchInput))) {
             const liElement = document.createElement('li');
-            const pCityStateElement = document.createElement('p');
+            let pCityStateElement = document.createElement('p');
             const spanPopulationElement = document.createElement('span');
 
-          
-            // City Name
-            let spanStartIndex = cityName.indexOf(searchInput);
-            let spanEndIndex =  spanStartIndex >= 0 ? spanStartIndex + searchLength : -1;
-            for (let i = 0; i < cityName.length; i++) {
-                let spanCharElement = document.createElement('span');
-                spanCharElement.textContent += cityName[i];
-                if (i >= spanStartIndex && i < spanEndIndex) {
-                    spanCharElement.classList.add('hl');
-                }
-                pCityStateElement.appendChild(spanCharElement);
-            }
-            
+            pCityStateElement = updateParghCityStateElement(cityName, searchInput, searchLength, pCityStateElement);
             pCityStateElement.appendChild(spanSeperator);
-            // State Name
-            spanStartIndex = stateName.indexOf(searchInput);
-            spanEndIndex = spanStartIndex >= 0 ? spanStartIndex + searchLength : -1;
-
-            for (let i = 0; i < stateName.length; i++) {
-                let spanCharStateElement = document.createElement('span');
-                spanCharStateElement.textContent += stateName[i];
-                if (i >= spanStartIndex && i < spanEndIndex) {
-                    spanCharStateElement.classList.add('hl');
-                }
-                pCityStateElement.appendChild(spanCharStateElement);
-            }
-
-            console.log(pCityStateElement);
+            pCityStateElement = updateParghCityStateElement(stateName, searchInput, searchLength, pCityStateElement);
             
             spanPopulationElement.classList.add('population');
             spanPopulationElement.textContent = numberWithCommas(city.population);
@@ -73,8 +54,22 @@ inputSearch.addEventListener('keydown', (e) => {
     });
 
     ulElement.replaceChildren(documentFragments);
-});
+}
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function updateParghCityStateElement(name, search, searchLength, root) {
+    let spanStartIndex = name.indexOf(search);
+    let spanEndIndex =  spanStartIndex >= 0 ? spanStartIndex + searchLength : -1;
+    for (let i = 0; i < name.length; i++) {
+        let spanCharElement = document.createElement('span');
+        spanCharElement.textContent += name[i];
+        if (i >= spanStartIndex && i < spanEndIndex) {
+            spanCharElement.classList.add('hl');
+        }
+        root.appendChild(spanCharElement);
+    }
+    return root;
 }
