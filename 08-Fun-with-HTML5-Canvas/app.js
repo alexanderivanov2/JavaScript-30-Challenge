@@ -1,25 +1,45 @@
-const canvasElement = document.querySelector('#draw');
-const ctx = canvasElement.getContext('2d');
-const bounding = canvasElement.getBoundingClientRect();
+const canvasDrawElement = document.querySelector('#draw');
+const canvasTitleElement = document.querySelector('#title');
+const ctxTitle = canvasTitleElement.getContext('2d');
+const ctxDraw = canvasDrawElement.getContext('2d');
+const bounding = canvasDrawElement.getBoundingClientRect();
 let isDraw = false;
-ctx.strokeStyle = 'blue';
 
+// Set draw properties
+let gradient = ctxDraw.createLinearGradient(0, 0,800, 0);
+gradient.addColorStop(0, 'green');
+gradient.addColorStop(0.1, 'orange');
+gradient.addColorStop(.2, 'green');
+gradient.addColorStop(.3, 'blue');
+gradient.addColorStop(.4, 'pink');
+gradient.addColorStop(.5, 'yellow');
+gradient.addColorStop(.7, 'purple');
+
+
+
+ctxDraw.strokeStyle = gradient;
+ctxDraw.lineWidth = '10';
+
+// Set title properties
+console.log(ctxTitle)
+ctxTitle.font = '72px Helvetica';
+ctxTitle.fillText(`Let's Draw...`, 0, 64);
 const cordinates = {
     x: 0,
     y: 0,
 }
 
-canvasElement.addEventListener('mousedown', startDraw);
-canvasElement.addEventListener('mouseup', stopDraw);
-canvasElement.addEventListener('mousemove', draw);
+canvasDrawElement.addEventListener('mousedown', startDraw);
+canvasDrawElement.addEventListener('mouseup', stopDraw);
+canvasDrawElement.addEventListener('mousemove', draw);
 
 
 function startDraw(e) {
     setCordinates(e);
     isDraw = true;
     console.log(`Start - x:${cordinates.x} - y:${cordinates.y}`);
-    ctx.beginPath();
-    ctx.moveTo(cordinates.x, cordinates.y);
+    ctxDraw.beginPath();
+    ctxDraw.moveTo(cordinates.x, cordinates.y);
 }
 
 
@@ -28,8 +48,8 @@ function draw(e) {
    
     if (isDraw) {
         console.log(`Draw - x:${cordinates.x} - y:${cordinates.y}`);
-        ctx.lineTo(cordinates.x, cordinates.y);
-        ctx.stroke();
+        ctxDraw.lineTo(cordinates.x, cordinates.y);
+        ctxDraw.stroke();
     }
 }
 
