@@ -24,13 +24,13 @@ function onUp(e) {
 }
 
 function onClickInBox(e) {
-    const clickedElement = e.target; 
+    const clickedElement = e.target;
+
     if (clickedElement.type == 'checkbox') {
         const indexOfElement = getIndex(clickedElement);
 
         if (clickedElement.checked) {
             addElement(indexOfElement);
-          
         } else {
             emptyArr();
         }
