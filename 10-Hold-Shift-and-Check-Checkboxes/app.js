@@ -20,8 +20,7 @@ function onUp(e) {
 
     if (pressedKey == 'Shift') {
         isShiftPress = false;
-    }
-    
+    }   
 }
 
 function onClickInBox(e) {
@@ -33,22 +32,13 @@ function onClickInBox(e) {
             addElement(indexOfElement);
           
         } else {
-            removeIndex(indexOfElement);
+            emptyArr();
         }
     }
 }
 
 function getIndex(el, arr=listOfItemsElements) {
     return arr.findIndex(i => i==el);
-}
-
-function removeIndex(el, arr=indexesArr) {
-    const findIndex = arr.findIndex(i => el === i);
-    
-    if (findIndex) {
-        arr.splice(findIndex, 1);
-    }
-
 }
 
 function addElement(el, arr=indexesArr) {
@@ -59,7 +49,6 @@ function addElement(el, arr=indexesArr) {
     } else {
         arr.splice(0, 1, el);
     }
-
 }
 
 function checkMultipleBoxes() {
@@ -70,4 +59,9 @@ function checkMultipleBoxes() {
     }
     // Clear indexArr
     indexesArr.splice(0, 2);
+}
+
+function emptyArr(arr=indexesArr) {
+    const arrLength = arr.length;
+    arr.splice(0, arrLength);
 }
