@@ -18,29 +18,49 @@
     }
 
     // Regular
-
+    console.log('hello');
     // Interpolated
-
+    const name = 'JavaScript';
+    console.log(`Hello, ${name}!`);
     // Styled
-
+    console.log(`%c Hello, ${name}!`, 'font-size:50px; color: lightgreen');
     // warning!
-
+    console.warn('Something go wrong!');
     // Error :|
-
+    console.error('Someting go wrong!');
     // Info
-
+    console.info('Info...');
     // Testing
-
+    console.assert(1=== '1', 'That is Wrong! Different types.');
     // clearing
-
+    // console.clear();
     // Viewing DOM Elements
-
+    const p = document.querySelector('p');
+    console.log(p);
+    console.dir(p);
     // Grouping together
-
+    dogs.forEach(dog => {
+      console.groupCollapsed(dog.name);
+      console.log(`This is ${dog.name}.`);
+      console.log(`${dog.name} is ${dog.age} years old.`);
+      console.groupEnd(dog.name);
+    })
     // counting
-
+    console.count('A');
+    console.count('A');
+    console.count('B');
+    console.count('A');
+    console.count('A');
+    console.count('B');
+    console.count('A');
     // timing
-
+    console.time('Fetch time:');
+    fetch('https://api.github.com/users/wesbos')
+        .then(res => res.json())
+        .then(data => console.log(data));
+    console.timeEnd('Fetch time:');
+    // Table
+    console.table(dogs);
   </script>
 </body>
 </html>
