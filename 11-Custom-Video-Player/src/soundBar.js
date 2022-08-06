@@ -3,15 +3,19 @@ import { videoEl, soundSliderInput } from "./domElements.js";
 const MAX_SOUND = 1;
 const MIN_SOUND = 0;
 let currVolume = videoEl.volume;
-const step = soundSliderInput.getAttribute('step');
+const step = Number(soundSliderInput.getAttribute('step'));
 
-console.log(currVolume);
-console.log(step);
 
-export function changeVolume(e) {
+export function changeVolume(e, key) {
     e.preventDefault();
-    console.log(e.target.value);
-    currVolume = e.target.value;
+    if (key == 'ArrowDown') {
+        currVolume = Math.max(0, currVolume - step);
+    } else if (key == 'ArrowUp') {
+        currVolume = Math.min(1, currVolume + step);
+    } else {
+        currVolume = e.target.value;
+    }
+
     setVolume();
 }
 

@@ -1,25 +1,19 @@
 import * as domEl from './domElements.js';
-import { moveTime, playAndStopPlayer, videoCurrentTimeUpdate } from './play.js';
+import { changePlayrate, endVideo, moveTime, playAndStopPlayer, videoCurrentTimeUpdate } from './play.js';
 import { progressBarUpdate } from './progressBar.js';
 import { changeVolume } from './soundBar.js';
 
-
-// console.log(progress.clientWidth);
 let videoDuration;
-let currentTime = 0;
-console.dir(domEl.videoEl);
-console.log(domEl.videoEl.volume);
-domEl.videoEl.volume = 0.10;
 
+//Event Listeners
 // Start app
 domEl.videoEl.addEventListener('canplay', (e) => {
     e.preventDefault();
-    console.log(e);
     videoDuration = e.target.duration;
-    console.log(videoDuration)
 });
 
-//Event Listeners
+// End Video
+domEl.videoEl.addEventListener('ended', endVideo);
 //Buttons configuration
 window.addEventListener('keydown', keysHandler);
 // Play/Pause Button
@@ -30,7 +24,8 @@ domEl.videoEl.addEventListener('timeupdate', (e) => videoCurrentTimeUpdate(e, vi
 domEl.progress.addEventListener('click', (e) => progressBarUpdate(e, videoDuration));
 // soundBar change volume
 domEl.soundSliderInput.addEventListener('change', changeVolume);
-
+// playrate change
+domEl.videoSpeedInput.addEventListener('change', changePlayrate)
 // move forward and backwart movie
 domEl.playerButtonsMove.forEach(btn => btn.addEventListener('click', (e) => moveTime(e, btn.getAttribute('data-skip'))));
 
@@ -43,8 +38,8 @@ function keysHandler(e) {
     const handlers = {
         ArrowRight: (e, key) => moveTime(e, key),
         ArrowLeft: (e, key) => moveTime(e, key),
-        ArrowUp: '',
-        ArrowDown: '',
+        ArrowUp: (e, key) => changeVolume(e, key),
+        ArrowDown: (e, key) => changeVolume(e, key),
         Space: (e) => playAndStopPlayer(e),
     }
 
@@ -54,3 +49,9 @@ function keysHandler(e) {
 
 }
 
+// Full Screen
+domEl.player.addEventListener('dblclick', (e) => {
+    e.preventDefault();
+    console.log('full');
+    domEl.player.classList.toggle('fullscreen');
+})
