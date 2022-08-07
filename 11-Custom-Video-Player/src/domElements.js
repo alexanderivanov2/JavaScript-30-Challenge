@@ -5,5 +5,6 @@ export const progress = document.querySelector('.progress');
 export const playerButtonsMove = document.querySelectorAll('.player__button__move');
 export const soundSliderInput = document.querySelector('#sound__slider');
 export const videoSpeedInput = document.querySelector('#videoSpeed');
+export const fullscreenButton = document.querySelector('.fullscreen__button');
 export const player = document.querySelector('.player');
 

@@ -51,9 +51,9 @@ export function videoCurrentTimeUpdate(e, videoDuration) {
 export function changePlayrate(e, key) {
     e.preventDefault();
     if (key == 'ArrowDown') {
-        currPlayRate = Math.max(0, currPlayRate - step);
+        currPlayRate = Math.max(MIN_PLAYRATE, currPlayRate - step);
     } else if (key == 'ArrowUp') {
-        currPlayRate = Math.min(2, currPlayRate + step);
+        currPlayRate = Math.min(MAX_PLAYRATE, currPlayRate + step);
     } else {
         currPlayRate = e.target.value;
     }
@@ -63,5 +63,4 @@ export function changePlayrate(e, key) {
 
 function setPlayRate() {
     videoEl.playbackRate = currPlayRate;
-    console.log(videoEl.playbackRate);
 }

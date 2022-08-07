@@ -18,6 +18,7 @@ domEl.videoEl.addEventListener('ended', endVideo);
 window.addEventListener('keydown', keysHandler);
 // Play/Pause Button
 domEl.togglePlayBtn.addEventListener('click', playAndStopPlayer);
+domEl.videoEl.addEventListener('click', playAndStopPlayer);
 // Video current time
 domEl.videoEl.addEventListener('timeupdate', (e) => videoCurrentTimeUpdate(e, videoDuration));
 // progressBar move video event listener
@@ -28,7 +29,6 @@ domEl.soundSliderInput.addEventListener('change', changeVolume);
 domEl.videoSpeedInput.addEventListener('change', changePlayrate)
 // move forward and backwart movie
 domEl.playerButtonsMove.forEach(btn => btn.addEventListener('click', (e) => moveTime(e, btn.getAttribute('data-skip'))));
-
 
 function keysHandler(e) {
     e.preventDefault();
@@ -50,8 +50,10 @@ function keysHandler(e) {
 }
 
 // Full Screen
-domEl.player.addEventListener('dblclick', (e) => {
+domEl.player.addEventListener('dblclick', fullscreenToogle)
+domEl.fullscreenButton.addEventListener('click', fullscreenToogle);
+
+function fullscreenToogle(e) {
     e.preventDefault();
-    console.log('full');
     domEl.player.classList.toggle('fullscreen');
-})
+}
