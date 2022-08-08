@@ -50,7 +50,7 @@ function onClickPlate(e) {
         }
 
         items[dataIndex].done = isChecked ? false : true;
-        localStorage.setItem('items', JSON.stringify(items));
+        setAllItems(items);
     }
 }
 
