@@ -5,16 +5,19 @@ const itemsList = document.querySelector('.plates');
 
 
 
-function createDOMElement(item) {
+function createDOMElements(item, i) {
     const fragment = document.createDocumentFragment();
     const liElement = document.createElement('li');
     const labelElement = document.createElement('label');
     const inputElement = document.createElement('input');
 
-    labelElement.setAttribute('for', item);
-    labelElement.textContent = item;
-    inputElement.name = item;
+    labelElement.setAttribute('for', item.item);
+    labelElement.textContent = item.item;
+    inputElement.name = item.item;
+    inputElement.id = item.item;
+    inputElement.setAttribute('data-index', i);
     inputElement.type = 'checkbox';
+    if (item.done) inputElement.setAttribute('checked', 'true');
     liElement.appendChild(inputElement);
     liElement.appendChild(labelElement);
 
@@ -37,11 +40,16 @@ function onClickPlate(e) {
 
     if (inputEl) {
         const isChecked = inputEl.getAttribute('checked');
+        const dataIndex = inputEl.getAttribute('data-index');
+
         if (isChecked) {
             inputEl.removeAttribute('checked');
         } else {
             inputEl.setAttribute('checked', true);
         }
+
+        items[dataIndex].done = isChecked ? false : true;
+        localStorage.setItem('items', JSON.stringify(items));
     }
 }
 
@@ -51,9 +59,12 @@ function onSubmit(e) {
     const formData = new FormData(e.target);
     const plate = formData.get('item');
 
-    addItems.querySelector('input').value = '';
     setItems(plate);
-    itemsList.appendChild(createDOMElement(plate));
+    items = getItems();
+
+    itemsList.appendChild(createDOMElements({item: plate, done: false}, items.length - 1));
+    
+    e.target.reset();
 }
 
 // form submit event listener
@@ -65,6 +76,6 @@ let items = getItems();
 // fill first list;
 if (items) {
     const fragment = document.createDocumentFragment();
-    items.forEach(item => fragment.appendChild(createDOMElement(item)));
+    items.forEach((item, i) => fragment.appendChild(createDOMElements(item, i)));
     itemsList.replaceChildren(fragment); 
 }

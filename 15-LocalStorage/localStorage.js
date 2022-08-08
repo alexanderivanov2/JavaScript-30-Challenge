@@ -13,7 +13,7 @@ export const getItems = () => {
 export const setItems = (item) => {
     let items = getItems();
 
-    items.push(item);
+    items.push({item: item, done: false});
 
     localStorage.setItem('items', JSON.stringify(items));
 }
