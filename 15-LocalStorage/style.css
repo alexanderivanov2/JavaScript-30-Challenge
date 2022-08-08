@@ -79,3 +79,25 @@ h2 {
   outline: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.checkAndUncheckBtns {
+  padding: 15px;
+}
+
+.checkBtn {
+  background-color: lightgreen;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  color: white
+}
+
+.uncheckBtn {
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+
+}

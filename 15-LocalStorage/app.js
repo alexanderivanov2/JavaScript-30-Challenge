@@ -1,8 +1,9 @@
-import { getItems, setItems } from "./localStorage.js";
+import { getItems, setAllItems, setItems } from "./localStorage.js";
 
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-
+const checkAllBtn = document.querySelector('.checkBtn');
+const uncheckAllBtn = document.querySelector('.uncheckBtn');
 
 
 function createDOMElements(item, i) {
@@ -67,10 +68,35 @@ function onSubmit(e) {
     e.target.reset();
 }
 
+function getPlates() {
+    const plates = document.querySelectorAll('li>input');
+    return plates;
+}
+
+function onCheck(e) {
+    e.preventDefault();
+
+    const action = e.target.textContent;
+    const isDone = action == 'Check All' ? true : false;
+    const plates = getPlates();
+
+    plates.forEach((inputEl, i) => {
+        if (action == 'Check All') {
+            inputEl.setAttribute('checked', true);
+        } else {
+            inputEl.removeAttribute('checked');
+        }
+        items[i].done = isDone;
+    });
+
+    setAllItems(items);
+}
+
 // form submit event listener
 addItems.addEventListener('submit', onSubmit);
 itemsList.addEventListener('click', onClickPlate);
-
+checkAllBtn.addEventListener('click', onCheck);
+uncheckAllBtn.addEventListener('click', onCheck);
 //initial load items
 let items = getItems();
 // fill first list;
@@ -79,3 +105,4 @@ if (items) {
     items.forEach((item, i) => fragment.appendChild(createDOMElements(item, i)));
     itemsList.replaceChildren(fragment); 
 }
+

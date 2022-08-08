@@ -17,3 +17,7 @@ export const setItems = (item) => {
 
     localStorage.setItem('items', JSON.stringify(items));
 }
+
+export const setAllItems = (items) => {
+    localStorage.setItem('items', JSON.stringify(items));
+}
