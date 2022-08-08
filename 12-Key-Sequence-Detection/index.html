@@ -7,6 +7,17 @@
 </head>
 <body>
 <script>
+    const secretKey = 'javascript';
+    const pressedKeys = [];
+    
+    window.addEventListener('keydown', (e) => {
+      pressedKeys.push(e.key);
+      pressedKeys.splice(-secretKey.length - 1, pressedKeys.length - secretKey.length);
+      console.log(pressedKeys);
+      if (pressedKeys.join('').includes(secretKey)) {
+        cornify_add();
+      }
+    });
 </script>
 </body>
 </html>
