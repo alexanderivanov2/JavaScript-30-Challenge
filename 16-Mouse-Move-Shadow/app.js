@@ -20,16 +20,25 @@ window.addEventListener('mousemove', (e) => {
     if (y < h1OffsetTop) {
         shadowY = (h1OffsetTop - y) / 3;
         color = 'green';
-    } else if ( y > h1offsetBottom) {
-        shadowY = -((y- h1offsetBottom) / 3);
+    } else if ( y > h1OffsetTop) {
+        shadowY = -((y- h1OffsetTop) / 3);
         color = 'blue';
     }
 
+    // else if ( y > h1offsetBottom) {
+    //     shadowY = -((y- h1offsetBottom) / 3);
+    //     color = 'blue';
+    // }
+
     if (x < h1OffsetLeft) {
         shadowX = (h1OffsetLeft - x) / 2;
-    } else if ( x > h1OffsetRight) {
-        shadowX = -(x - h1OffsetRight) / 2;
+    } else if ( x > h1OffsetLeft) {
+        shadowX = -(x - h1OffsetLeft) / 2;
     }
+
+    // else if ( x > h1OffsetRight) {
+    //     shadowX = -(x - h1OffsetRight) / 2;
+    // }
 
 
     h1Element.style.textShadow = `${shadowX}px ${shadowY}px 1px ${'green'},
