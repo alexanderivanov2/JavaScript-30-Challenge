@@ -1,0 +1,30 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+li {
+    background-color: lawngreen;
+    color: white;
+    list-style-type: none;
+    padding: 10px;
+    text-align: center;
+}
+
+div {
+    width: 30%;
+    margin: 2rem auto;
+    
+    padding: 10px;
+    background-color: lightblue;
+
+    text-align: center;
+    /* display: flex;
+    justify-content: center; */
+}
