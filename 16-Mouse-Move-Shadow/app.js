@@ -32,5 +32,8 @@ window.addEventListener('mousemove', (e) => {
     }
 
 
-    h1Element.style.textShadow = `${shadowX}px ${shadowY}px 1px ${color}, ${shadowX + 10}px ${shadowY + 10}px 1px ${'red'}`;
+    h1Element.style.textShadow = `${shadowX}px ${shadowY}px 1px ${'green'},
+     ${shadowX * - 1}px ${shadowY * -1}px 1px ${'red'}, 
+     ${shadowY}px ${shadowX * - 1}px 1px ${'yellow'}, 
+     ${shadowY * - 1}px ${shadowX}px 1px ${'blue'}`;
 })
