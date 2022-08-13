@@ -35,17 +35,16 @@ function mouseoverHandler(e, li) {
 }
 
 function mouseoutHanlder(e, li) {
-    console.log('moveout');
     const liBoundaries = li.getBoundingClientRect();
     const hiddenContent = li.children[1];
     const boundaries = hiddenContent.getBoundingClientRect();
     const x = e.x;
     const y = e.y;
 
-        if ((x < boundaries.left || x > boundaries.right ||y < liBoundaries.top || y > boundaries.bottom)) {
-            dropdownBG.classList.remove('open');
-            li.classList.remove('trigger-enter', 'trigger-enter-active');
-        }
+    if ((x < boundaries.left || x > boundaries.right ||y < liBoundaries.top || y > boundaries.bottom)) {
+        dropdownBG.classList.remove('open');
+        li.classList.remove('trigger-enter', 'trigger-enter-active');
+    }
 }
 
 navLi.forEach(li => {
