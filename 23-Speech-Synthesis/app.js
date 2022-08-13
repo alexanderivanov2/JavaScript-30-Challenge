@@ -9,18 +9,13 @@ let voices = [];
 const synth = window.speechSynthesis;
 const msg = new SpeechSynthesisUtterance();
 
-let voiceList;
-
-
-
-setTimeout(fillInputVoices, 60);
+setTimeout(fillInputVoices, 1000);
 
 setTimeout(() => {
     voices = synth.getVoices();
-}, 50);
+}, 850);
 
 function fillInputVoices() {
-    console.log(voices);
     voices.forEach((voice, i) => {
         const optionEl = document.createElement('option');
         optionEl.textContent = `${i + 1}. ${voice.name}`;
@@ -30,18 +25,26 @@ function fillInputVoices() {
 
 function speakText(e) {
     e.preventDefault();
-    const txt = textareaEl.value;
-    msg.text = txt;
-    const selectedVoice = voicesDropdown.value;
-    console.log(selectedVoice);
-    let [index] = [...selectedVoice.split('.')];
-    
-    if (index) {
-        index = Number(index);
-        msg.voice = voices[index - 1];
+    if (synth.paused) {
+        synth.resume();
+    } else {
+        const txt = textareaEl.value;
+        msg.text = txt;
+        const selectedVoice = voicesDropdown.value;
+        let [index] = [...selectedVoice.split('.')];
+        console.log(index);
+        if (index) {
+            index = Number(index);
+            msg.voice = voices[index - 1];
+        }
+        msg.rate = options[0].value;
+        msg.pitch = options[1].value;
+        synth.speak(msg);
     }
-    synth.speak(msg);
-
 }
 
 speakButton.addEventListener('click', speakText);
+stopButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    synth.pause();
+})
