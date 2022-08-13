@@ -35,13 +35,13 @@ function mouseoverHandler(e, li) {
 }
 
 function mouseoutHanlder(e, li) {
+    console.log('moveout');
     const liBoundaries = li.getBoundingClientRect();
     const hiddenContent = li.children[1];
-    console.log(li.children[0].getBoundingClientRect());
     const boundaries = hiddenContent.getBoundingClientRect();
     const x = e.x;
     const y = e.y;
-    console.log(`${y} < ${liBoundaries.top} || ${y} > ${boundaries.bottom}`);
+
         if ((x < boundaries.left || x > boundaries.right ||y < liBoundaries.top || y > boundaries.bottom)) {
             dropdownBG.classList.remove('open');
             li.classList.remove('trigger-enter', 'trigger-enter-active');
