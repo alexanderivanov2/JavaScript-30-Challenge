@@ -23,7 +23,12 @@ function mouseoverHandler(e, li) {
     moveDropdownBG(liBoundaries, hiddenContentBoundaries);
 
     dropdownBG.classList.add('open');
-    li.classList.add('trigger-enter-active');    
+    setTimeout(() => {
+        if (li.classList.contains('trigger-enter')) {
+            li.classList.add('trigger-enter-active');    
+        }
+    }, 100);
+    
 }
 
 function mouseoutHanlder(e, li) {
