@@ -54,7 +54,7 @@ function handleButtonTimeControl(e, isBtn=true) {
     const btn = e.target;
     const seconds = isBtn ? Number(btn.dataset.time) : Number(e.target.value) * 60;
     const endTime = getEndTime(seconds);
-    timeEndElement.textContent = `ENDS: ${getTimeInString(endTime, true)}`;
+    timeEndElement.textContent = `Be back at ${getTimeInString(endTime, true)}`;
     isSwitched = true ? isTimeoutRun : false;
     setTimeout(() => renderTimer(seconds), 1050);
 }
