@@ -16,13 +16,13 @@ function convertSecondsInHHMMSS(totalSeconds) {
     return {hours, minutes, seconds};
 }
 
-function getTimeInString(timeObj) {
+function getTimeInString(timeObj, isEndTime) {
 
     const h = timeObj.hours >= 10 ? timeObj.hours :`0${timeObj.hours}`;
     const m = timeObj.minutes >= 10 ? timeObj.minutes : `0${timeObj.minutes}`;
     const s = timeObj.seconds >= 10 ? timeObj.seconds : `0${timeObj.seconds}`;
         
-    const result = `${h == '00' ? '' : `${h}:`}${m == '00' && h == '00' ? '' : `${m}:`}${s}`;
+    const result = `${h == '00' && !isEndTime ? '' : `${h}:`}${m == '00' && h == '00' ? '' : `${m}:`}${s}`;
 
     return result;
 }
