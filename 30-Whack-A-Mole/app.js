@@ -47,6 +47,7 @@ function moveMoles() {
     const hole = getHole();
 
     showAndHideMole(hole, time);
+    
     if (!timeUp) {
         setTimeout(() => moveMoles(), 750);
     }
